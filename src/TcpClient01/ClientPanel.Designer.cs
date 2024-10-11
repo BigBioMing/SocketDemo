@@ -29,6 +29,7 @@ namespace TcpClient01
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientPanel));
             this.gb = new System.Windows.Forms.GroupBox();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -39,10 +40,16 @@ namespace TcpClient01
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbSend = new System.Windows.Forms.RichTextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.btnSendFile = new System.Windows.Forms.ToolStripButton();
+            this.ddbSettings = new System.Windows.Forms.ToolStripDropDownButton();
+            this.文件保存路径ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbSavePath = new System.Windows.Forms.ToolStripMenuItem();
             this.gb.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb
@@ -51,8 +58,10 @@ namespace TcpClient01
             this.gb.Controls.Add(this.toolStrip1);
             this.gb.Dock = System.Windows.Forms.DockStyle.Left;
             this.gb.Location = new System.Drawing.Point(0, 0);
+            this.gb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gb.Name = "gb";
-            this.gb.Size = new System.Drawing.Size(200, 470);
+            this.gb.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gb.Size = new System.Drawing.Size(267, 588);
             this.gb.TabIndex = 0;
             this.gb.TabStop = false;
             this.gb.Text = "连接信息";
@@ -60,33 +69,35 @@ namespace TcpClient01
             // propertyGrid
             // 
             this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid.Location = new System.Drawing.Point(3, 42);
+            this.propertyGrid.Location = new System.Drawing.Point(4, 47);
+            this.propertyGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(194, 425);
+            this.propertyGrid.Size = new System.Drawing.Size(259, 537);
             this.propertyGrid.TabIndex = 0;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnConnect,
             this.btnDisconnect});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 17);
+            this.toolStrip1.Location = new System.Drawing.Point(4, 22);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(194, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(259, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnConnect
             // 
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(32, 22);
+            this.btnConnect.Size = new System.Drawing.Size(39, 22);
             this.btnConnect.Text = "连接";
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnDisconnect
             // 
             this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(32, 22);
+            this.btnDisconnect.Size = new System.Drawing.Size(39, 22);
             this.btnDisconnect.Text = "断开";
             this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
@@ -94,9 +105,11 @@ namespace TcpClient01
             // 
             this.groupBox1.Controls.Add(this.tbRecv);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(200, 0);
+            this.groupBox1.Location = new System.Drawing.Point(267, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(528, 370);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(704, 463);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "日志";
@@ -104,20 +117,24 @@ namespace TcpClient01
             // tbRecv
             // 
             this.tbRecv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbRecv.Location = new System.Drawing.Point(3, 17);
+            this.tbRecv.Location = new System.Drawing.Point(4, 22);
+            this.tbRecv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbRecv.Name = "tbRecv";
-            this.tbRecv.Size = new System.Drawing.Size(522, 350);
+            this.tbRecv.Size = new System.Drawing.Size(696, 437);
             this.tbRecv.TabIndex = 0;
             this.tbRecv.Text = "";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.toolStrip2);
             this.groupBox2.Controls.Add(this.tbSend);
             this.groupBox2.Controls.Add(this.btnSend);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(200, 370);
+            this.groupBox2.Location = new System.Drawing.Point(267, 463);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(528, 100);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(704, 125);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "输入区";
@@ -125,39 +142,90 @@ namespace TcpClient01
             // tbSend
             // 
             this.tbSend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSend.Location = new System.Drawing.Point(3, 17);
+            this.tbSend.Location = new System.Drawing.Point(4, 22);
+            this.tbSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSend.Name = "tbSend";
-            this.tbSend.Size = new System.Drawing.Size(447, 80);
+            this.tbSend.Size = new System.Drawing.Size(596, 99);
             this.tbSend.TabIndex = 1;
             this.tbSend.Text = "";
             // 
             // btnSend
             // 
             this.btnSend.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSend.Location = new System.Drawing.Point(450, 17);
+            this.btnSend.Location = new System.Drawing.Point(600, 22);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 80);
+            this.btnSend.Size = new System.Drawing.Size(100, 99);
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // Form1
+            // toolStrip2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnSendFile,
+            this.ddbSettings});
+            this.toolStrip2.Location = new System.Drawing.Point(4, 22);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(596, 27);
+            this.toolStrip2.TabIndex = 3;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // btnSendFile
+            // 
+            this.btnSendFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
+            this.btnSendFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSendFile.Name = "btnSendFile";
+            this.btnSendFile.Size = new System.Drawing.Size(87, 24);
+            this.btnSendFile.Text = "Select File";
+            this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
+            // 
+            // ddbSettings
+            // 
+            this.ddbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ddbSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.文件保存路径ToolStripMenuItem,
+            this.tbSavePath});
+            this.ddbSettings.Image = ((System.Drawing.Image)(resources.GetObject("ddbSettings.Image")));
+            this.ddbSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ddbSettings.Name = "ddbSettings";
+            this.ddbSettings.Size = new System.Drawing.Size(53, 24);
+            this.ddbSettings.Text = "设置";
+            // 
+            // 文件保存路径ToolStripMenuItem
+            // 
+            this.文件保存路径ToolStripMenuItem.Name = "文件保存路径ToolStripMenuItem";
+            this.文件保存路径ToolStripMenuItem.Size = new System.Drawing.Size(430, 26);
+            this.文件保存路径ToolStripMenuItem.Text = "文件保存路径";
+            // 
+            // tbSavePath
+            // 
+            this.tbSavePath.Name = "tbSavePath";
+            this.tbSavePath.Size = new System.Drawing.Size(430, 26);
+            this.tbSavePath.Text = "C:\\Users\\Administrator\\Desktop\\新建文件夹 (4)";
+            // 
+            // ClientPanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 470);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gb);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "ClientPanel";
+            this.Size = new System.Drawing.Size(971, 588);
             this.gb.ResumeLayout(false);
             this.gb.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -174,6 +242,11 @@ namespace TcpClient01
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RichTextBox tbSend;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton btnSendFile;
+        private System.Windows.Forms.ToolStripDropDownButton ddbSettings;
+        private System.Windows.Forms.ToolStripMenuItem 文件保存路径ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tbSavePath;
     }
 }
 

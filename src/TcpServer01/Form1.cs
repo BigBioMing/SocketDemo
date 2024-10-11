@@ -49,13 +49,13 @@ namespace TcpServer01
         {
             Print($"客户端[{e.Client.Host}:{e.Client.Port}]连接成功");
             e.Client.OnDataReceived += Client_OnDataReceived;
-            e.Client.UseHeartbeatTimeout(3000);//心跳检测
+            //e.Client.UseHeartbeatTimeout(3000);//心跳检测
         }
 
         private void Client_OnDataReceived(object sender, STTech.BytesIO.Core.DataReceivedEventArgs e)
         {
             TcpClient tcpClient = (TcpClient)sender;
-            Print($"来自客户端[{tcpClient.RemoteEndPoint}]的消息：{e.Data.EncodeToString("utf-8")}");
+            //Print($"来自客户端[{tcpClient.RemoteEndPoint}]的消息：{e.Data.EncodeToString("utf-8")}");
 
             foreach (TcpClient client in _server.Clients)
             {

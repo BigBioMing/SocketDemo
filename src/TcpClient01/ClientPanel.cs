@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace TcpClient01
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
         }
-        public ClientPanel(BytesClient client):this()
+        public ClientPanel(BytesClient client) : this()
         {
             _client = client;
             propertyGrid.SelectedObject = _client;
@@ -33,8 +34,8 @@ namespace TcpClient01
 
         private void Client_OnDataSent(object sender, DataSentEventArgs e)
         {
-            string msg = e.Data.EncodeToString("utf-8");
-            Print($"发送数据：{msg}");
+            //string msg = e.Data.EncodeToString("utf-8");
+            //Print($"发送数据：{msg}");
         }
 
         private void Client_OnDisconnected(object sender, STTech.BytesIO.Core.DisconnectedEventArgs e)
@@ -59,8 +60,12 @@ namespace TcpClient01
         /// <param name="e"></param>
         private void Client_OnDataReceived(object sender, STTech.BytesIO.Core.DataReceivedEventArgs e)
         {
-            string msg = e.Data.EncodeToString("utf-8");
-            Print($"收到数据：{msg}");
+            //string msg = e.Data.EncodeToString("utf-8");
+            //Print($"收到数据：{msg}");
+
+            var filePath = Path.Combine(tbSavePath.Text + "/newfile.txt");
+            Print($"接收到文件，存放在：{filePath}");
+            File.WriteAllBytes(filePath, e.Data);
         }
 
         /// <summary>
@@ -97,6 +102,27 @@ namespace TcpClient01
         private void Print(string msg)
         {
             tbRecv.AppendText($"[{DateTime.Now}] {msg}{Environment.NewLine}");
+        }
+
+        private void btnSendFile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "All files (*.*)|*.*";
+                //openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    var filePath = openFileDialog.FileName;
+                    var fileContent = File.ReadAllBytes(filePath);
+                    Print($"正在发送文件：{Path.GetFileName(filePath)}");
+                    _client.SendAsync(fileContent);
+                    Print($"已发送文件：{Path.GetFileName(filePath)}");
+                }
+            }
         }
     }
 }
